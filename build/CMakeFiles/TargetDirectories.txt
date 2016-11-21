@@ -1,0 +1,2 @@
+/home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles/raspicam_cv_stream.dir
+/home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles/video-write.dir
