@@ -47,79 +47,44 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/DEV/bprp/raspicam_cv_stream
+CMAKE_SOURCE_DIR = /home/pi/DEV/bprp/raspicam_opencv_streamer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/DEV/bprp/raspicam_cv_stream/build
+CMAKE_BINARY_DIR = /home/pi/DEV/bprp/raspicam_opencv_streamer/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/raspicam_cv_stream.dir
+# Target rules for target CMakeFiles/raspicam_opencv_streamer.dir
 
 # All Build rule for target.
-CMakeFiles/raspicam_cv_stream.dir/all:
-	$(MAKE) -f CMakeFiles/raspicam_cv_stream.dir/build.make CMakeFiles/raspicam_cv_stream.dir/depend
-	$(MAKE) -f CMakeFiles/raspicam_cv_stream.dir/build.make CMakeFiles/raspicam_cv_stream.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles  1
-	@echo "Built target raspicam_cv_stream"
-.PHONY : CMakeFiles/raspicam_cv_stream.dir/all
+CMakeFiles/raspicam_opencv_streamer.dir/all:
+	$(MAKE) -f CMakeFiles/raspicam_opencv_streamer.dir/build.make CMakeFiles/raspicam_opencv_streamer.dir/depend
+	$(MAKE) -f CMakeFiles/raspicam_opencv_streamer.dir/build.make CMakeFiles/raspicam_opencv_streamer.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles  1
+	@echo "Built target raspicam_opencv_streamer"
+.PHONY : CMakeFiles/raspicam_opencv_streamer.dir/all
 
 # Include target in all.
-all: CMakeFiles/raspicam_cv_stream.dir/all
+all: CMakeFiles/raspicam_opencv_streamer.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/raspicam_cv_stream.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/raspicam_cv_stream.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles 0
-.PHONY : CMakeFiles/raspicam_cv_stream.dir/rule
+CMakeFiles/raspicam_opencv_streamer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/raspicam_opencv_streamer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles 0
+.PHONY : CMakeFiles/raspicam_opencv_streamer.dir/rule
 
 # Convenience name for target.
-raspicam_cv_stream: CMakeFiles/raspicam_cv_stream.dir/rule
-.PHONY : raspicam_cv_stream
+raspicam_opencv_streamer: CMakeFiles/raspicam_opencv_streamer.dir/rule
+.PHONY : raspicam_opencv_streamer
 
 # clean rule for target.
-CMakeFiles/raspicam_cv_stream.dir/clean:
-	$(MAKE) -f CMakeFiles/raspicam_cv_stream.dir/build.make CMakeFiles/raspicam_cv_stream.dir/clean
-.PHONY : CMakeFiles/raspicam_cv_stream.dir/clean
+CMakeFiles/raspicam_opencv_streamer.dir/clean:
+	$(MAKE) -f CMakeFiles/raspicam_opencv_streamer.dir/build.make CMakeFiles/raspicam_opencv_streamer.dir/clean
+.PHONY : CMakeFiles/raspicam_opencv_streamer.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/raspicam_cv_stream.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/video-write.dir
-
-# All Build rule for target.
-CMakeFiles/video-write.dir/all:
-	$(MAKE) -f CMakeFiles/video-write.dir/build.make CMakeFiles/video-write.dir/depend
-	$(MAKE) -f CMakeFiles/video-write.dir/build.make CMakeFiles/video-write.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles  2
-	@echo "Built target video-write"
-.PHONY : CMakeFiles/video-write.dir/all
-
-# Include target in all.
-all: CMakeFiles/video-write.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/video-write.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/video-write.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles 0
-.PHONY : CMakeFiles/video-write.dir/rule
-
-# Convenience name for target.
-video-write: CMakeFiles/video-write.dir/rule
-.PHONY : video-write
-
-# clean rule for target.
-CMakeFiles/video-write.dir/clean:
-	$(MAKE) -f CMakeFiles/video-write.dir/build.make CMakeFiles/video-write.dir/clean
-.PHONY : CMakeFiles/video-write.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/video-write.dir/clean
+clean: CMakeFiles/raspicam_opencv_streamer.dir/clean
 .PHONY : clean
 
 #=============================================================================

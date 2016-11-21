@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/DEV/bprp/raspicam_cv_stream
+CMAKE_SOURCE_DIR = /home/pi/DEV/bprp/raspicam_opencv_streamer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/DEV/bprp/raspicam_cv_stream/build
+CMAKE_BINARY_DIR = /home/pi/DEV/bprp/raspicam_opencv_streamer/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -73,9 +73,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles /home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -103,78 +103,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named raspicam_cv_stream
+# Target rules for targets named raspicam_opencv_streamer
 
 # Build rule for target.
-raspicam_cv_stream: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 raspicam_cv_stream
-.PHONY : raspicam_cv_stream
+raspicam_opencv_streamer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 raspicam_opencv_streamer
+.PHONY : raspicam_opencv_streamer
 
 # fast build rule for target.
-raspicam_cv_stream/fast:
-	$(MAKE) -f CMakeFiles/raspicam_cv_stream.dir/build.make CMakeFiles/raspicam_cv_stream.dir/build
-.PHONY : raspicam_cv_stream/fast
+raspicam_opencv_streamer/fast:
+	$(MAKE) -f CMakeFiles/raspicam_opencv_streamer.dir/build.make CMakeFiles/raspicam_opencv_streamer.dir/build
+.PHONY : raspicam_opencv_streamer/fast
 
-#=============================================================================
-# Target rules for targets named video-write
-
-# Build rule for target.
-video-write: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 video-write
-.PHONY : video-write
-
-# fast build rule for target.
-video-write/fast:
-	$(MAKE) -f CMakeFiles/video-write.dir/build.make CMakeFiles/video-write.dir/build
-.PHONY : video-write/fast
-
-raspicam_cv_stream.o: raspicam_cv_stream.cpp.o
-.PHONY : raspicam_cv_stream.o
+raspicam_opencv_streamer.o: raspicam_opencv_streamer.cpp.o
+.PHONY : raspicam_opencv_streamer.o
 
 # target to build an object file
-raspicam_cv_stream.cpp.o:
-	$(MAKE) -f CMakeFiles/raspicam_cv_stream.dir/build.make CMakeFiles/raspicam_cv_stream.dir/raspicam_cv_stream.cpp.o
-.PHONY : raspicam_cv_stream.cpp.o
+raspicam_opencv_streamer.cpp.o:
+	$(MAKE) -f CMakeFiles/raspicam_opencv_streamer.dir/build.make CMakeFiles/raspicam_opencv_streamer.dir/raspicam_opencv_streamer.cpp.o
+.PHONY : raspicam_opencv_streamer.cpp.o
 
-raspicam_cv_stream.i: raspicam_cv_stream.cpp.i
-.PHONY : raspicam_cv_stream.i
-
-# target to preprocess a source file
-raspicam_cv_stream.cpp.i:
-	$(MAKE) -f CMakeFiles/raspicam_cv_stream.dir/build.make CMakeFiles/raspicam_cv_stream.dir/raspicam_cv_stream.cpp.i
-.PHONY : raspicam_cv_stream.cpp.i
-
-raspicam_cv_stream.s: raspicam_cv_stream.cpp.s
-.PHONY : raspicam_cv_stream.s
-
-# target to generate assembly for a file
-raspicam_cv_stream.cpp.s:
-	$(MAKE) -f CMakeFiles/raspicam_cv_stream.dir/build.make CMakeFiles/raspicam_cv_stream.dir/raspicam_cv_stream.cpp.s
-.PHONY : raspicam_cv_stream.cpp.s
-
-video-write.o: video-write.cpp.o
-.PHONY : video-write.o
-
-# target to build an object file
-video-write.cpp.o:
-	$(MAKE) -f CMakeFiles/video-write.dir/build.make CMakeFiles/video-write.dir/video-write.cpp.o
-.PHONY : video-write.cpp.o
-
-video-write.i: video-write.cpp.i
-.PHONY : video-write.i
+raspicam_opencv_streamer.i: raspicam_opencv_streamer.cpp.i
+.PHONY : raspicam_opencv_streamer.i
 
 # target to preprocess a source file
-video-write.cpp.i:
-	$(MAKE) -f CMakeFiles/video-write.dir/build.make CMakeFiles/video-write.dir/video-write.cpp.i
-.PHONY : video-write.cpp.i
+raspicam_opencv_streamer.cpp.i:
+	$(MAKE) -f CMakeFiles/raspicam_opencv_streamer.dir/build.make CMakeFiles/raspicam_opencv_streamer.dir/raspicam_opencv_streamer.cpp.i
+.PHONY : raspicam_opencv_streamer.cpp.i
 
-video-write.s: video-write.cpp.s
-.PHONY : video-write.s
+raspicam_opencv_streamer.s: raspicam_opencv_streamer.cpp.s
+.PHONY : raspicam_opencv_streamer.s
 
 # target to generate assembly for a file
-video-write.cpp.s:
-	$(MAKE) -f CMakeFiles/video-write.dir/build.make CMakeFiles/video-write.dir/video-write.cpp.s
-.PHONY : video-write.cpp.s
+raspicam_opencv_streamer.cpp.s:
+	$(MAKE) -f CMakeFiles/raspicam_opencv_streamer.dir/build.make CMakeFiles/raspicam_opencv_streamer.dir/raspicam_opencv_streamer.cpp.s
+.PHONY : raspicam_opencv_streamer.cpp.s
 
 # Help Target
 help:
@@ -183,15 +146,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... raspicam_cv_stream"
+	@echo "... raspicam_opencv_streamer"
 	@echo "... rebuild_cache"
-	@echo "... video-write"
-	@echo "... raspicam_cv_stream.o"
-	@echo "... raspicam_cv_stream.i"
-	@echo "... raspicam_cv_stream.s"
-	@echo "... video-write.o"
-	@echo "... video-write.i"
-	@echo "... video-write.s"
+	@echo "... raspicam_opencv_streamer.o"
+	@echo "... raspicam_opencv_streamer.i"
+	@echo "... raspicam_opencv_streamer.s"
 .PHONY : help
 
 

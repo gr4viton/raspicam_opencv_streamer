@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/DEV/bprp/raspicam_cv_stream
+# Install script for directory: /home/pi/DEV/bprp/raspicam_opencv_streamer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ else()
   set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
-file(WRITE "/home/pi/DEV/bprp/raspicam_cv_stream/build/${CMAKE_INSTALL_MANIFEST}" "")
+file(WRITE "/home/pi/DEV/bprp/raspicam_opencv_streamer/build/${CMAKE_INSTALL_MANIFEST}" "")
 foreach(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  file(APPEND "/home/pi/DEV/bprp/raspicam_cv_stream/build/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  file(APPEND "/home/pi/DEV/bprp/raspicam_opencv_streamer/build/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 endforeach()

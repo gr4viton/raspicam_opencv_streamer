@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/DEV/bprp/raspicam_cv_stream/raspicam_cv_stream.cpp" "/home/pi/DEV/bprp/raspicam_cv_stream/build/CMakeFiles/raspicam_cv_stream.dir/raspicam_cv_stream.cpp.o"
+  "/home/pi/DEV/bprp/raspicam_opencv_streamer/raspicam_opencv_streamer.cpp" "/home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles/raspicam_opencv_streamer.dir/raspicam_opencv_streamer.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

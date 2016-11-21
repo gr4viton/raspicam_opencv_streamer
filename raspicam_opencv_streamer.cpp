@@ -223,8 +223,8 @@ int write_video(string NAME, int codec_id, bool is_colored)
 
 void rename_it()
 {
-    bool out = rename("/home/pi/DEV/bprp/raspicam_cv_stream/build/out.jpg", 
-                        "/home/pi/DEV/bprp/raspicam_cv_stream/build/out.mjpg");
+    bool out = rename("../script/out.jpg", 
+                        "../script/out.mjpg");
 
 //    bool out = rename("build/out.avi", "build/out.mjpg");
 //    bool out = rename("/home/pi/mjg_out2/out.avi", "/home/pi/mjpg_out2/out.mjpg");

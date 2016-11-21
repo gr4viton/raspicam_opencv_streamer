@@ -6,12 +6,20 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/DEV/bprp/raspicam_cv_stream/video-write.cpp
+/home/pi/DEV/bprp/raspicam_opencv_streamer/raspicam_opencv_streamer.cpp
 iostream
+-
+cstring
 -
 string
 -
-opencv2/core.hpp
+iostream
+-
+fstream
+-
+time.h
+-
+limits.h
 -
 opencv2/opencv.hpp
 -
