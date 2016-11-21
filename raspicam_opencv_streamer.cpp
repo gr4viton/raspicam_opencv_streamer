@@ -22,13 +22,6 @@
 using namespace cv;
 using namespace std;
 
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-void printusage(){
-    cout<<"Usage:\n";
-    cout<<"  ./raspicam_cv_stream /var/www/output.mjpeg";
-    cout<<"\twill write stream file at given location\n";
-    cout<<endl;
-}
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // global variables
@@ -40,7 +33,6 @@ Mat output;
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // function declarations
 void rename_it();
-int write_video(string NAME, int codec_id, bool is_colored);
 int write_image(string NAME);
 
 int set_cam_format(int format);
@@ -56,11 +48,8 @@ int init_raspicam(void)
     cv::Mat image;
     int nCount=10;
     //set camera params
-    // Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 );
-    // Camera.set( CV_CAP_PROP_FORMAT, CV_8UC4 );
-    // grayscale unsigned 8bit = byte = jpg
+    // grayscale unsigned 8bit = byte 
     Camera.set( CV_CAP_PROP_FORMAT, CV_8U );    
-//    Camera.set( CV_CAP_PROP_FORMAT, CV_8UC3 );
 
     //Open camera
     cout<<"Opening Camera..."<<endl;
@@ -68,7 +57,7 @@ int init_raspicam(void)
 
     int x = 320;
     int y = 240;
-    printf("Setting resolution to %ix%i\n",x,y);
+    printf("Setting resolution to %ix%i\n", x, y);
     Camera.set( CV_CAP_PROP_FRAME_WIDTH, x);
     Camera.set( CV_CAP_PROP_FRAME_HEIGHT, y);
 
@@ -94,10 +83,10 @@ int init_raspicam(void)
 }
 
 int set_cam_format(int format){
-    cout<<"Releasing Camera..."<<endl;
+    cout<<"Releasing Camera to change parameters..."<<endl;
     Camera.release();
     cout<<"Seting Camera format..."<<endl;
-    Camera.set( CV_CAP_PROP_FORMAT, CV_8U );    
+    Camera.set( CV_CAP_PROP_FORMAT, format);    
     cout<<"Opening Camera..."<<endl;
     if (!Camera.open()) {cerr<<"Error opening the camera"<<endl;return -1;}
 }
@@ -105,7 +94,7 @@ int set_cam_format(int format){
 
 int main(int argc, char** argv)
 {
-
+    // init camera input via raspicam library and try to grab images
     init_raspicam();
 	
     // fps counter begin
@@ -115,17 +104,28 @@ int main(int argc, char** argv)
     double fps;
     // fps counter end
 
-    int color = 0;
-
+    int color_index= 3;
+    int cvt_index = 3;
+    if (argc>1)
+    {   
+        color_index = atoi(argv[1]);
+        if (argc>2)
+            cvt_index = atoi(argv[2]);
+        else
+            cvt_index = color_index;
+    }
+    cout<<"color_index = "<<color_index<<endl;
+    cout<<"cvt_index = "<<cvt_index<<endl;
 
     int cam_code = 0;
-    switch(color){
-        case(0): cam_code=CV_8U; break;
+    switch(color_index){
+        case(0): cam_code=CV_8U; break; // 8-bit unsigned int - no color = grayscale
+        case(1): cam_code=CV_8UC1; break; 
+        case(3): cam_code=CV_8UC3; break; // 8-bit usnsigned int - 3 colors = rgb or bgr (from cam)
         case(4): cam_code=CV_8UC4; break;
-        case(3): cam_code=CV_8UC3; break;
-        case(1): cam_code=CV_8UC1; break;
     };
     set_cam_format(cam_code);
+    
 
     while(1)
     {
@@ -147,24 +147,30 @@ int main(int argc, char** argv)
             printf("Retrieved image! (%ix%i)\n", frame.cols, frame.rows);
 
         output = frame;
-        int code = 0;
-        if (color!=0){
-            switch(color){
-                case(3): code = COLOR_BGR2GRAY; break;
-                case(4): code = COLOR_RGBA2GRAY; break;
-                case(6): code = COLOR_GRAY2RGBA; break;
+
+        
+        if (cvt_index!=0){
+            int cvt_code = COLOR_BGR2GRAY;
+            switch(cvt_index){
+                case(1): cvt_code = COLOR_BGR2RGB; cout<<"COLOR_BGR2RGB"<<endl;break;
+                case(2): cvt_code = COLOR_BGR2GRAY; cout<<"COLOR_BGR2GRAY"<<endl;break;
+
+                // as the CV_8UC3 has color channels in BGR order (color_index = 3)
+                //we must switch them to RGBfor the viewing 
+                case(3): cvt_code = COLOR_BGR2RGB; cout<<"COLOR_BGR2RGB"<<endl;break;
+                case(4): cvt_code = COLOR_RGBA2BGR; cout<<"COLOR_RGBA2BGR"<<endl;break;
+                case(6): cvt_code = COLOR_GRAY2RGB; cout<<"COLOR_GRAY2RGB"<<endl;break;
             };
-            cvtColor(frame, output, cv::COLOR_BGR2GRAY);
+            Mat colored;
+            cvtColor(frame, colored, cvt_code);
+            output = colored;
         }
-        //output = frame;
+
         
         print_type();
 
 
- //      "/home/pi/mjpg_out2/out.avi" 
-        write_image("out.jpg");
- //       write_video("out.avi", CV_FOURCC('M','J','P','G'), false);
- //       write_video("out.avi", CV_FOURCC('M','J','P','G'), true);
+        write_image("../stream/out.jpg");
         rename_it();        
 
         // fps counter begin
@@ -179,7 +185,6 @@ int main(int argc, char** argv)
     }
 
     Camera.release();
-//    cap.release();
     return 0;
 }
 
@@ -194,53 +199,14 @@ int write_image(string NAME )
     }
 }
 
-int write_video(string NAME, int codec_id, bool is_colored)
-{
-    Size S = output.size();
-    VideoWriter outputVideo;
-    double out_fps = 5;
-    try
-    {
-        outputVideo.open(NAME, codec_id, out_fps, S, is_colored);
-    } 
-    catch (cv::Exception & e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-
-    if (!outputVideo.isOpened())
-    {
-        cout  << "Could not open the output video for write: " << NAME << endl;
-        return -1;
-    }
-
-    outputVideo.write(output);
-    outputVideo.release();
-    return 0;
-}
-
-
 
 void rename_it()
 {
-    bool out = rename("../script/out.jpg", 
-                        "../script/out.mjpg");
-
-//    bool out = rename("build/out.avi", "build/out.mjpg");
-//    bool out = rename("/home/pi/mjg_out2/out.avi", "/home/pi/mjpg_out2/out.mjpg");
-
-    if (!out)
+    int rc = rename("../stream/out.jpg", 
+                    "../stream/out.mjpg");
+    if (rc)
         cout<<"Could not rename!"<<endl;
-        //cout<<"Could not rename ["<<".avi"<<"] to [.mjpg]"<<endl;
-    else
-        cout<<"Renamed!"<<endl;
-
-/*
-    ofstream f;
-    f.open("build/out.mjpg", ios::out | ios::app | ios::binary);
-    f<<endl;
-    f.close();
-  */  
+        cerr<<"Error renaming jpg to mjpg"<<endl;
 }
 
 
@@ -249,7 +215,7 @@ void print_type()
     int type_i = output.type();
     printf("Size is %ix%i, type_i=%i, type = %s\n",  
                     output.cols, output.rows, type_i, (
-                        (type_i && CV_8U) ? "CV_8U" : (
+                        (type_i && CV_8U || 1) ? "CV_8U" : (
                         (type_i && CV_8UC1) ? "CV_8UC1" : (
                         (type_i && CV_8UC3) ? "CV_8UC3" : (
                         (type_i && CV_8UC4) ? "CV_8UC4" : (
