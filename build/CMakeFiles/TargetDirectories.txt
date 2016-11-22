@@ -1,1 +1,0 @@
-/home/pi/DEV/bprp/raspicam_opencv_streamer/build/CMakeFiles/raspicam_opencv_streamer.dir
