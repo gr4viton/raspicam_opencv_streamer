@@ -219,13 +219,15 @@ Mat get_x_edges(Mat img_gray)
 // you should use pointers (or C++ references) to pass the value by refference
 // this would only copy the address (pointer) to the image = faster for processing
 {
+	
 	// if not grayscale - convert it
     if(!(img_gray.type() && CV_8U))
     {
+		cout<<">> It's not grayscale - going to convert it to grayscale!"<<endl;
 		Mat colored;
 		cvtColor(img_gray, img_gray, COLOR_RGB2GRAY);
 	}
-
+	cout<<">> Going to find edges by Sobel filter!"<<endl;
 	int x_order = 1;
 	int y_order = 0;
 	
@@ -248,6 +250,7 @@ Mat get_x_edges(Mat img_gray)
 
 Mat make_absolute(Mat image)
 {
+	cout<<">> Going to make absolute image!"<<endl;
 	Mat abs_image;
 	convertScaleAbs( image, abs_image );
 	// abs_image would be in CV_8U - grayscale 8-bit unsigned integer matrix
