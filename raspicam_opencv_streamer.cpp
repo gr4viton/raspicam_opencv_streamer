@@ -166,6 +166,9 @@ int main(int argc, char** argv)
             output = colored;
         }
 
+        Rect roi(0,50,frame.cols, 100);
+        Mat img_roi = output(roi);
+        output = img_roi;
         
         print_type();
 
@@ -206,7 +209,7 @@ void rename_it()
                     "../stream/out.mjpg");
     if (rc)
         cout<<"Could not rename!"<<endl;
-        cerr<<"Error renaming jpg to mjpg"<<endl;
+        cerr<<"Return code ["<<rc<<"]renaming jpg to mjpg"<<endl;
 }
 
 
