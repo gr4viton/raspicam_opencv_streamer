@@ -33,7 +33,7 @@ int write_image(string NAME);
 int set_cam_format(int format);
 void print_type();
 Mat get_x_edges(Mat img_gray);
-
+Mat make_absolute(Mat image)
 
 
 
@@ -166,6 +166,9 @@ int main(int argc, char** argv)
         // detect edges
         //output = get_x_edges(output);
         
+        // make absolute
+        //output = make_absolute(output);
+        
         // print image type
         print_type();
 		
@@ -222,17 +225,32 @@ Mat get_x_edges(Mat img_gray)
 		Mat colored;
 		cvtColor(img_gray, img_gray, COLOR_RGB2GRAY);
 	}
-        
+
+	int x_order = 1;
+	int y_order = 0;
+	
+	// default values        
 	int scale = 1; 
 	int delta = 0; 
 	int ddepth = CV_16S;
-
+	int conv_core_size = 3;
+	
 	Mat grad_x;
 
-	//Scharr( img_gray, grad_x, ddepth, 1, 0, scale, delta, BORDER_DEFAULT ); 
-	Sobel( img_gray, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT ); 
+	Sobel( img_gray, grad_x, ddepth, x_order, y_order, conv_core_size, scale, delta, BORDER_DEFAULT ); 
+	
+	// Scharr is almost similar to Sobel filter with convolution core size 3,
+	// which has to some point better performance (for the core size 3)
+	//Scharr( img_gray, grad_x, ddepth, x_order, y_order, scale, delta, BORDER_DEFAULT ); 
 	
 	return grad_x;
+}
+
+Mat make_absolute(Mat image)
+{
+	Mat abs_image;
+	convertScaleAbs( image, abs_image );
+	// abs_image would be in CV_8U - grayscale 8-bit unsigned integer matrix
 }
 
 void print_type()
