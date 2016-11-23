@@ -33,7 +33,7 @@ int write_image(string NAME);
 int set_cam_format(int format);
 void print_type();
 Mat get_x_edges(Mat img_gray);
-Mat make_absolute(Mat image)
+Mat make_absolute(Mat image);
 
 
 
