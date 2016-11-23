@@ -1,8 +1,3 @@
-// source: http://docs.opencv.org/modules/highgui/doc/reading_and_writing_images_and_video.html
-
-//#include "opencv2/highgui/highgui.hpp"
-//#include "opencv2/video/background_segm.hpp"
-
 #include <iostream>
 #include <cstring>
 #include <string>
@@ -37,6 +32,7 @@ int write_image(string NAME);
 
 int set_cam_format(int format);
 void print_type();
+Mat get_x_edges(Mat img_gray);
 
 
 
@@ -63,10 +59,8 @@ int init_raspicam(void)
 
     printf("Resolution set");
 
-
     //Start capture
     cout<<"Capturing "<<nCount<<" frames ...."<<endl;
-
 
     for ( int i=0; i<nCount; i++ ) {
         Camera.grab();
@@ -76,7 +70,6 @@ int init_raspicam(void)
                 <<" of size: "<<image.size() \
                 <<" img type: "<<image.type() \
                 <<std::flush;
-        
     }
     cout<<endl<<"Stop camera..."<<endl;
 	return 0;
@@ -147,7 +140,6 @@ int main(int argc, char** argv)
             printf("Retrieved image! (%ix%i)\n", frame.cols, frame.rows);
 
         output = frame;
-
         
         if (cvt_index!=0){
             int cvt_code = COLOR_BGR2GRAY;
@@ -165,14 +157,19 @@ int main(int argc, char** argv)
             cvtColor(frame, colored, cvt_code);
             output = colored;
         }
-
+		
+		// Region of interest = get subimage
         Rect roi(0,50,frame.cols, 100);
         Mat img_roi = output(roi);
         output = img_roi;
         
+        // detect edges
+        //output = get_x_edges(output);
+        
+        // print image type
         print_type();
-
-
+		
+		// write file on disk to be able to stream it
         write_image("../stream/out.jpg");
         rename_it();        
 
@@ -202,7 +199,6 @@ int write_image(string NAME )
     }
 }
 
-
 void rename_it()
 {
     int rc = rename("../stream/out.jpg", 
@@ -212,6 +208,32 @@ void rename_it()
         cerr<<"Return code ["<<rc<<"]renaming jpg to mjpg"<<endl;
 }
 
+
+
+Mat get_x_edges(Mat img_gray)
+// the input and return arguments are not optimal as it is passed by value
+// this copies the image everytime
+// you should use pointers (or C++ references) to pass the value by refference
+// this would only copy the address (pointer) to the image = faster for processing
+{
+	// if not grayscale - convert it
+    if(!(img_gray.type() && CV_8U))
+    {
+		Mat colored;
+		cvtColor(img_gray, img_gray, COLOR_RGB2GRAY);
+	}
+        
+	int scale = 1; 
+	int delta = 0; 
+	int ddepth = CV_16S;
+
+	Mat grad_x;
+
+	//Scharr( img_gray, grad_x, ddepth, 1, 0, scale, delta, BORDER_DEFAULT ); 
+	Sobel( img_gray, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT ); 
+	
+	return grad_x;
+}
 
 void print_type()
 {
